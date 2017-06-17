@@ -7,7 +7,7 @@ package pkgJogoDaVelha;
 
 public abstract class JogadorAbstrato {
     char lado;
-
+    boolean turno;
     /**
      * Define o lado de um jogador qualquer
      * do jogo da velha
@@ -17,10 +17,18 @@ public abstract class JogadorAbstrato {
             lado = entrada[0];
         else
             entrada[0] = entrada[1] =  'e';
+        switch(entrada[1]) {
+            case '1':
+                turno = true;
+                break;
+            default:
+                turno = false;
+                break;
+        }
     }
 
     /**
      * @return a representação numéria de 1 á 8 da posição para marcar com o lado do jogador
      * */
-    public abstract int jogar();
+    public abstract int jogar(Tabuleiro tabuleiro);
 }

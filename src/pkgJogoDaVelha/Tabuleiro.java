@@ -6,9 +6,19 @@ package pkgJogoDaVelha;
  */
 public class Tabuleiro {
     char[][] tabuleiro;
+    char ultimoAJogar = '-';
 
     public Tabuleiro() {
         tabuleiro = new char[][] { {'?', '?', '?'}, {'?', '?', '?'}, {'?', '?', '?'} };
+    }
+
+    public Tabuleiro(Tabuleiro original) {
+        this.tabuleiro = new char[3][3];
+        for(int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.tabuleiro[i][j] = original.tabuleiro[i][j];
+            }
+        }
     }
 
     /**
@@ -32,21 +42,21 @@ public class Tabuleiro {
      * @return 'lado' caso houver vencedor, 'e' para empate e '?' caso contrário,
      * caso a jogada seja inválida retorna '!'
      * */
-    public char realizarJogada(char lado, int posicao) {
+    public void realizarJogada(char lado, int posicao) {
         int[] coord = acharPosicao(posicao);
 
         if(tabuleiro[coord[0]][coord[1]] == '?') {
             tabuleiro[coord[0]][coord[1]] = lado;
-        } else return '!';
-
-        return procurarVencedor(lado);
+            ultimoAJogar = lado;
+        } else return;
     }
+
     /**
      * verifica se o lado que realizou a ultima jogada ganhou o jogo,
      * se houve empate ou se o jogo não acabou
      * */
-    private char procurarVencedor(char lado) {
-        if(venceuLinha() || venceuColuna() || venceuDiagonal()) return lado;
+    public char procurarVencedor() {
+        if(venceuLinha() || venceuColuna() || venceuDiagonal()) return ultimoAJogar;
         if(!contemVazio(tabuleiro[0]) && !contemVazio(tabuleiro[1]) && !contemVazio(tabuleiro[2])) return 'e';
         return '?';
     }
@@ -55,12 +65,9 @@ public class Tabuleiro {
      * Verifica se há tres caracteres iguais em uma das linhas do tabuleiro
      */
     private boolean venceuLinha() {
-        for (char[] chars : tabuleiro) {
-            if((chars[0] != '?') && (chars[0] == chars[1]) && (chars[0] == chars[2])) {
-                System.out.println("venceuLinha");
+        for (char[] chars : tabuleiro)
+            if((chars[0] != '?') && (chars[0] == chars[1]) && (chars[0] == chars[2]))
                 return true;
-            }
-        }
         return false;
     }
 
@@ -68,12 +75,9 @@ public class Tabuleiro {
      * Verifica se há tres caracteres iguais em uma das colunas do tabuleiro
      */
     private boolean venceuColuna() {
-        for (int i = 0; i < 3; i++) {
-            if((tabuleiro[0][i] != '?') && (tabuleiro[0][i] == tabuleiro[1][i]) && (tabuleiro[0][i] == tabuleiro[2][i])) {
-                System.out.println("venceuColuna");
+        for (int i = 0; i < 3; i++)
+            if((tabuleiro[0][i] != '?') && (tabuleiro[0][i] == tabuleiro[1][i]) && (tabuleiro[0][i] == tabuleiro[2][i]))
                 return true;
-            }
-        }
         return false;
     }
 
@@ -85,6 +89,9 @@ public class Tabuleiro {
                 (tabuleiro[0][2] != '?') && (tabuleiro[0][2] == tabuleiro[1][1]) && (tabuleiro[0][2] == tabuleiro[2][0]);
     }
 
+    /**
+     * Verifica se uma sequencia do tabuleiro contém espaços não preenchidos
+     * */
     private boolean contemVazio(char[] sequencia) {
         for (char c : sequencia) {
             if(c == '?') return true;
@@ -97,7 +104,7 @@ public class Tabuleiro {
      *                de zero a oito
      * @return um vetor indicando as coordenadas da posição no tabuleiro
      * */
-    private int[] acharPosicao(int posicao) {
+    protected int[] acharPosicao(int posicao) {
         switch(posicao) {
             case 0:
                 return new int[]{0, 0};

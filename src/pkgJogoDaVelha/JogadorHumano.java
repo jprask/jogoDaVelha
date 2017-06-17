@@ -20,15 +20,17 @@ public class JogadorHumano extends JogadorAbstrato {
 
     @Override
     /**
-     * Jogador deve realizar uma jogada em uma posição existente, o controle de posições
-     * ocupadas é feito na classe Main
+     * Jogador deve realizar uma jogada em uma posição válida
      * */
-    public int jogar() {
+    public int jogar(Tabuleiro tabuleiro) {
         Scanner sc = new Scanner(System.in);
         int posicao = -1;
         while(posicao < 0 || posicao > 8) {
             System.out.println("Escolha uma posição para jogar:");
             posicao = sc.nextInt();
+            int[] coord = tabuleiro.acharPosicao(posicao);
+            if(tabuleiro.tabuleiro[coord[0]][coord[1]] != '?')
+                posicao = -1;
         }
         return posicao;
     }

@@ -46,9 +46,9 @@ public enum ASCII {
             " \\ \\ / / | | | __|  / _ \\  | '__| | |  / _` |    / _` | / _ \\   | | | |   | |\n" +
             "  \\ V /  | | | |_  | (_) | | |    | | | (_| |   | (_| ||  __/   | |_| |   |_|\n" +
             "   \\_/   |_|  \\__|  \\___/  |_|    |_|  \\__,_|    \\__,_| \\___|    \\___/    (_)"),
-    TABULEIRO_LINHA ("                        |           AA : CC : EE            |\n" +
-            "                        |          !BB :@DD :#FF            |"),
-    TABULEIRO_DIVISORIA ("                        |          - - - - - - - -          |");
+    TABULEIRO_LINHA ("                                    AA : CC : EE             \n" +
+            "                                   !BB :@DD :#FF             "),
+    TABULEIRO_DIVISORIA ("                                   - - - - - - - -           ");
 
     public String texto;
 

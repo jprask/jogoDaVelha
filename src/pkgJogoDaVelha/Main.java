@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String entrada = null;
+        String entradaHumano = null;
         int jogada;
         char retorno;
+        boolean jogoTerminou = false;
 
-        while((entrada = menuPrincipal()) != "-1") {
+        while((entradaHumano = menuPrincipal()) != "-1") {
             Tabuleiro tabuleiro = new Tabuleiro();
-            JogadorHumano jogador1 = new JogadorHumano(entrada.toCharArray());
+            JogadorHumano jogador1 = new JogadorHumano(entradaHumano.toCharArray());
+            char[] entrada = new char[2];
+            entrada[0] = (entradaHumano.toCharArray()[0] == 'x') ? 'o' : 'x';
+            entrada[1] = (entradaHumano.toCharArray()[1] == '0') ? '1' : '0';
+            JogadorAI jogador2 = new JogadorAI(entrada);
             System.out.println("Jogando como " + jogador1.lado);
-            do {
-                tabuleiro.exibir();
-                jogada = jogador1.jogar();
-                retorno = tabuleiro.realizarJogada(jogador1.lado, jogada);
-                System.out.println(retorno);
-            }while(true);
+            System.out.println("Jogando contra " + jogador2.lado);
         }
     }
 
@@ -29,12 +29,15 @@ public class Main {
         return scanner.next().toLowerCase();
     }
 
-   /* private static boolean executarJogo(Tabuleiro tabuleiro, JogadorHumano jogador1) {
-        tabuleiro.exibir();
-        char resultado = tabuleiro.realizarJogada(jogador1.lado, jogador1.jogar());
-        switch(resultado) {
-            case jogador1.lado
+    private static void exibirVencedor(char lado) {
+        switch(lado) {
+            case 'x' :
+                System.out.println(ASCII.VITORIAX.texto);
+                break;
+            case 'o' :
+                System.out.println(ASCII.VITORIAO.texto);
+                break;
         }
-    }*/
+    }
 
 }

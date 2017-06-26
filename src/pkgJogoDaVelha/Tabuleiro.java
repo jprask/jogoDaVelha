@@ -2,16 +2,23 @@ package pkgJogoDaVelha;
 
 /**
  * Tabuleiro de jogo da velha
- * Created by carmen on 09/06/2017.
+ * Created by jprask on 09/06/2017.
  */
 public class Tabuleiro {
     char[][] tabuleiro;
     char ultimoAJogar = '-';
 
+    /**
+     * Cria um novo tabuleiro sem nenhuma posição ocupada
+     * */
     public Tabuleiro() {
         tabuleiro = new char[][] { {'?', '?', '?'}, {'?', '?', '?'}, {'?', '?', '?'} };
     }
 
+    /**
+     * Cria um tabuleiro com conteúdo igual ao do
+     * @param original, um tabuleiro de jogo da velha
+     * */
     public Tabuleiro(Tabuleiro original) {
         this.tabuleiro = new char[3][3];
         for(int i = 0; i < 3; i++) {
@@ -36,6 +43,7 @@ public class Tabuleiro {
             }
         }
     }
+
     /**
      * @param lado que está realizando a jogada
      * @param posicao a ser preenchida

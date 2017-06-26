@@ -2,12 +2,13 @@ package pkgJogoDaVelha;
 
 /**
  * Classe abstrata para um jogador aarbitrario de jogo da velha
- * Created by carmen on 12/06/2017.
+ * Created by jprask on 12/06/2017.
  */
 
 public abstract class JogadorAbstrato {
     char lado;
     boolean turno;
+
     /**
      * Define o lado de um jogador qualquer
      * do jogo da velha

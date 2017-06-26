@@ -2,7 +2,7 @@ package pkgJogoDaVelha;
 
 /**
  * Enumeração com o texto á ser exibido na tela no jogo da velha
- * Created by carmen on 09/06/2017.
+ * Created by jprask on 09/06/2017.
  */
 public enum ASCII {
 
